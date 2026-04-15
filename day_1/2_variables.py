@@ -22,4 +22,4 @@ print("type of float is",type(float))  # Output: <class 'float'
 print("the value of boolean is",boolean)  # Output: True
 print("type of boolean is",type(boolean))  # Output: <class 'bool'>
 
-
+# 
