@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Students{% endblock %}
+{% block content %}
+<p><a class="btn btn-primary" href="{{ url_for('add') }}">Add Student Details</a></p>
+<table class="table table-striped">
+    <tr>
+      <th>Student ID</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>CC</th>
+      <th>CD</th>
+      <th>ML</th>
+      <th>AI</th>
+      <th>Total</th>
+      <th>AVG</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    </tr>
+  </thead>
+  <tbody>
+    {% for s in students %}
+    <tr>
+      <td>{{ s.student_id }}</td>
+      <td>{{ s.name }}</td>
+      <td>{{ s.age }}</td>
+      <td>{{ s.gender }}</td>
+      <td>{{ s.subject_cc }}</td>
+      <td>{{ s.subject_cd }}</td>
+      <td>{{ s.subject_ml }}</td>
+      <td>{{ s.subject_ai }}</td>
+      <td>{{ s.total }}</td>
+      <td>{{ '%.2f'|format(s.percentage) if s.percentage is not none else '' }}</td>
+      <td>{{ s.status }}</td>
+      <td>
+        <a class="btn btn-sm btn-secondary" href="{{ url_for('edit', student_id=s.id) }}">Edit</a>
+        <form style="display:inline" method="post" action="{{ url_for('delete', student_id=s.id) }}" onsubmit="return confirm('Delete student?');">
+          <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+        </form>
+      </td>
+    </tr>
+    {% else %}
+    <tr><td colspan="12">No students yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -17,7 +17,6 @@ Install dependencies: pip install -r requirements.txt
 
 import argparse
 import sys
-import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service as ChromeService
@@ -39,15 +38,21 @@ DEFAULT_URL = "https://scholar.parvam.in/student/login"
 EMAIL_XPATH = "/html/body/div[1]/div/div/div/div[2]/div/div/form/div/div[2]/div/div[2]/div[1]/input"
 PASSWORD_XPATH = "/html/body/div[1]/div/div/div/div[2]/div/div/form/div/div[2]/div/div[2]/div[2]/input"
 BUTTON_XPATH = "/html/body/div[1]/div/div/div/div[2]/div/div/form/div/div[2]/div/div[4]/button"
+MY_ATTENDANCE_XPATH = '//*[@id="sidebar-menu"]/ul/li[4]/ul/li[1]/a'
+MORNING_SESSION_XPATH = "/html/body/div[2]/div[3]/div/div[2]/div[2]/div/div"
+PRESENT_BUTTON_XPATH = "/html/body/div[2]/div[3]/div/div[2]/div[2]/div/div/button"
 
 
 def build_driver(headless: bool = False):
     options = webdriver.ChromeOptions()
+    options.add_experimental_option("detach", True)
     if headless:
         options.add_argument("--headless=new")
         options.add_argument("--disable-gpu")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-extensions")
+    options.add_argument("--disable-notifications")
 
     if HAS_WDM:
         service = ChromeService(ChromeDriverManager().install())
@@ -60,9 +65,11 @@ def build_driver(headless: bool = False):
 
 def login(url: str, email: str, password: str, headless: bool = False, timeout: int = 15):
     driver = build_driver(headless=headless)
+    driver.set_page_load_timeout(timeout + 10)
     wait = WebDriverWait(driver, timeout)
     try:
         driver.get(url)
+        wait.until(lambda current_driver: current_driver.execute_script("return document.readyState") == "complete")
 
         # Wait for email field and enter value
         email_el = wait.until(EC.presence_of_element_located((By.XPATH, EMAIL_XPATH)))
@@ -78,20 +85,38 @@ def login(url: str, email: str, password: str, headless: bool = False, timeout: 
         btn = wait.until(EC.element_to_be_clickable((By.XPATH, BUTTON_XPATH)))
         btn.click()
 
-        # Give the page a moment to respond
-        time.sleep(2)
+        # Wait for the dashboard/sidebar to be fully available after login.
+        wait.until(lambda current_driver: current_driver.execute_script("return document.readyState") == "complete")
+
+        # Open "My Attendance" from the sidebar after login.
+        my_attendance_link = wait.until(
+            EC.element_to_be_clickable((By.XPATH, MY_ATTENDANCE_XPATH))
+        )
+        my_attendance_link.click()
+
+        # Wait for the attendance page and morning session card before clicking Present.
+        wait.until(lambda current_driver: current_driver.execute_script("return document.readyState") == "complete")
+        wait.until(EC.visibility_of_element_located((By.XPATH, MORNING_SESSION_XPATH)))
+        present_button = wait.until(
+            EC.element_to_be_clickable((By.XPATH, PRESENT_BUTTON_XPATH))
+        )
+        present_button.click()
 
         # Try to detect successful navigation by checking URL or title change
         current_url = driver.current_url
         page_title = driver.title
-        print(f"After click: url={current_url}, title={page_title}")
+        print(f"Attendance flow completed: url={current_url}, title={page_title}")
 
     except TimeoutException as e:
         print("Timeout waiting for page elements:", e)
         driver.save_screenshot("login_timeout.png")
         raise
-    finally:
-        driver.quit()
+    except Exception:
+        print("Browser left open for inspection.")
+        raise
+
+    print("Browser will stay open. Close it manually when you are done.")
+    return driver
 
 
 def main():

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Edit' if student else 'Add' }} Student{% endblock %}
+{% block content %}
+<form method="post" action="{{ action }}">
+  <div class="mb-3">
+    <label class="form-label">Student ID</label>
+    <input name="student_id" class="form-control" value="{{ student.student_id if student else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Gender</label>
+    <div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="g_male" value="Male" {% if student and student.gender=='Male' %}checked{% endif %}>
+        <label class="form-check-label" for="g_male">Male</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="g_female" value="Female" {% if student and student.gender=='Female' %}checked{% endif %}>
+        <label class="form-check-label" for="g_female">Female</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="gender" id="g_other" value="Other" {% if student and student.gender=='Other' %}checked{% endif %}>
+        <label class="form-check-label" for="g_other">Other</label>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Name</label>
+    <input name="name" class="form-control" value="{{ student.name if student else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Age</label>
+    <input name="age" type="number" class="form-control" value="{{ student.age if student else '' }}" required>
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Grade</label>
+    <input name="grade" class="form-control" value="{{ student.grade if student else '' }}">
+  </div>
+  <hr>
+  <h5>Subjects (provide marks for at least 3)</h5>
+  <div class="mb-3">
+    <label class="form-label">CC (Computer Concepts)</label>
+    <input name="subject_cc" type="number" min="0" max="100" class="form-control" value="{{ student.subject_cc if student else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">CD (Compiler Design)</label>
+    <input name="subject_cd" type="number" min="0" max="100" class="form-control" value="{{ student.subject_cd if student else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">ML (Machine Learning)</label>
+    <input name="subject_ml" type="number" min="0" max="100" class="form-control" value="{{ student.subject_ml if student else '' }}">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">AI (Artificial Intelligence)</label>
+    <input name="subject_ai" type="number" min="0" max="100" class="form-control" value="{{ student.subject_ai if student else '' }}">
+  </div>
+  <button class="btn btn-success" type="submit">Save</button>
+  <a class="btn btn-secondary" href="{{ url_for('index') }}">Cancel</a>
+</form>
+{% endblock %}
