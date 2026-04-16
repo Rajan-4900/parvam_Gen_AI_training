@@ -137,9 +137,9 @@ def add():
 	return render_template('form.html', action=url_for('add'), student=None)
 
 
-@app.route('/edit/<int:student_id>', methods=['GET', 'POST'])
+@app.route('/edit/<student_id>', methods=['GET', 'POST'])
 def edit(student_id):
-	student = Student.query.get_or_404(student_id)
+	student = Student.query.filter_by(student_id=student_id).first_or_404()
 	if request.method == 'POST':
 		student_id_val = request.form.get('student_id', '').strip()
 		name = request.form.get('name', '').strip()
@@ -189,28 +189,31 @@ def edit(student_id):
 					except Exception:
 						pass
 					db.create_all()
-					# re-fetch the student object and re-apply changes
-					student = Student.query.get_or_404(student_id)
+					# re-fetch the student object and re-apply changes using new fields
+					student = Student.query.filter_by(student_id=student_id_val).first_or_404()
 					student.student_id = student_id_val
 					student.name = name
 					student.age = int(age)
 					student.gender = gender
-					student.subject1 = s1
-					student.subject2 = s2
+					student.subject_cc = int(sub_cc) if sub_cc.isdigit() else None
+					student.subject_cd = int(sub_cd) if sub_cd.isdigit() else None
+					student.subject_ml = int(sub_ml) if sub_ml.isdigit() else None
+					student.subject_ai = int(sub_ai) if sub_ai.isdigit() else None
 					student.total = total
 					student.percentage = percent
+					student.status = status
 					db.session.commit()
 			else:
 				raise
 		flash('Student updated.', 'success')
 		return redirect(url_for('index'))
 
-	return render_template('form.html', action=url_for('edit', student_id=student.id), student=student)
+	return render_template('form.html', action=url_for('edit', student_id=student.student_id), student=student)
 
 
-@app.route('/delete/<int:student_id>', methods=['POST'])
+@app.route('/delete/<student_id>', methods=['POST'])
 def delete(student_id):
-	student = Student.query.get_or_404(student_id)
+	student = Student.query.filter_by(student_id=student_id).first_or_404()
 	db.session.delete(student)
 	db.session.commit()
 	flash('Student deleted.', 'success')
