@@ -1,0 +1,29 @@
+Day - 1
+
+cmd --> command prompt
+code . --> code -> vs code
+     . --> pwd -> present working directory
+
+cd --> change directory
+   .. -> parent
+
+dir --> list all files in pwd
+
+python --version ---> check the python version 
+
+git --version --> check the git version
+
+====================================================================
+
+Day 2
+
+1. python -m my_venv
+2. my_venv/scripts/activate --> it will activate the venv file
+3. pip install dep ---> it will install dependency and packages
+4. pip freeze --> list all packages installed in sys/env
+
+requirements.txt :
+==============================
+5. 'pip freeze > requirements.txt' --> take all modules store in requirements.txt file
+
+6. pip install -r requirements.txt --> it will install all modules or dep present in requirements.txt file
