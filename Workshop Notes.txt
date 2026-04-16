@@ -27,3 +27,9 @@ requirements.txt :
 5. 'pip freeze > requirements.txt' --> take all modules store in requirements.txt file
 
 6. pip install -r requirements.txt --> it will install all modules or dep present in requirements.txt file
+=========================================
+
+
+
+frontend ---> html, css, js
+backend ----> 
