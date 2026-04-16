@@ -19,7 +19,7 @@ Day 2
 
 1. python -m my_venv
 2. my_venv/scripts/activate --> it will activate the venv file
-3. pip install dep ---> it will install dependency and packages
+3. pip install dep_name ---> it will install dependency and packages
 4. pip freeze --> list all packages installed in sys/env
 
 requirements.txt :
