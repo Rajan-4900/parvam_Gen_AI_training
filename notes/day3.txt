@@ -1,0 +1,43 @@
+Day3:
+=====
+
+flow of flask:
+==============   req
+client(/home)  ----> flask(home)
+				<----
+				res (web page, json)
+				
+MVC (model, view, controller):
+==============================
+model --> tables
+view --> frontend(html)
+controller --> backend / b logic
+
+flask(python) ----> db:
+=======================
+1. write raw sql
+	commad to create a table:
+	=========================
+	craete table student(
+		id int primary key,
+		name varchar(20),
+		email varchar(20)
+	);
+2. orm(object relational mapping):
+==================================
+1. flask_sqlalchamy (to any databse)
+
+object :
+========
+* it is a real world entity
+
+class:
+======
+* it is blueprint to create obj.
+
+Student(name, email) (class)
+
+pavan (pavan, pavam@gamil.com) -->object
+
+
+python ---> db 

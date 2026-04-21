@@ -1,0 +1,88 @@
+Day 2:
+======
+
+1. python -m venv name_of_venv --> to create venv
+
+ex: python -m venv my_venv
+
+2. name_of_venv\scripts\activate  --> to activate venv
+
+ex: my_venv\scripts\activate
+
+3. pip install dep_name --> to install dep
+	ex: pip install pandas
+
+4. pip freeze --> list all packages installed in sys/env
+
+requirements.txt:
+=================
+* to store dep for a project
+
+5. pip freeze > requirements.txt --> take all module store in requirements.txt file
+
+6. pip install -r requirements.txt --> it will install all modules or dep present in requirements.txt file.
+
+
+client server ar:
+=================
+1. http --> hyper text transfer protocol
+2. https --> hyper text transfer protocol sec
+
+response --> webpage, json(java script object notation)
+
+client:
+========
+1. html
+2. css
+3. js
+4. react
+5. angular
+6. vue.js
+
+server:
+=======
+1. python (flask,djano,FastAPI)
+2. js (node.js, express.js)
+3. java (Spring, Spring boot)
+
+database:
+=========
+1. mysql
+2. mongodb(no-sql)
+3. postgresql
+4. sqllite
+
+
+
+python (flask):
+===============
+* Flask is a lightweight WSGI web application framework for Python
+* flask will not follow the project str
+
+pip install flask 
+
+app.py
+
+we can develop two kind of web application:
+===========================================
+1. backend scope(rest apis) - json
+2. fullstack app(front and back)
+	front end -> html, css and js
+	back -> flask
+
+html --> templates
+css/js/img --> static
+
+requests:
+========
+1. get --> getting data from the server
+2. post --> seding data from client to server
+3. put / patch --> updating the existing record in server
+4.delete --> deleting existing record in server.
+
+student(html,css, js and bootstrap)
+=======
+C --> post
+R --> GET
+U --> put/patch
+D --> delete

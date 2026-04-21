@@ -1,0 +1,54 @@
+prompt engineering:
+===================
+1. Zero-Shot Prompting
+======================
+You don’t give any examples, just directly ask the task.
+
+Use when: Model already understands the task.
+
+Example:
+
+Classify this sentence as Positive or Negative:
+"I love this product!"
+
+Output: Positive
+
+2. One-Shot Prompting
+=====================
+You give one example to guide the model.
+
+Use when: You want slightly better accuracy.
+
+Example:
+
+Example:
+"I hate this movie" → Negative
+
+Now classify:
+"I love this product!"
+
+3. Few-Shot Prompting
+=====================
+You give multiple examples before asking.
+
+Use when: Task is complex or needs pattern learning.
+
+Example:
+
+"I love this" → Positive
+"This is bad" → Negative
+"Amazing experience" → Positive
+
+Now classify:
+"Worst service ever"
+
+4. Role-Based Prompting
+=======================
+You assign a role/persona to the model.
+
+Use when: You want tone, expertise, or style.
+
+Example:
+
+You are a senior software engineer.
+Explain REST API in simple terms.

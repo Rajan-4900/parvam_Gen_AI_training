@@ -1,0 +1,80 @@
+Day1:
+=====
+cmd  --> command prompt
+code . --->code --> vs code
+
+cd --> change dir 
+	. --> pwd(present working dir)
+.. -->parent
+
+crtl + / --> comment and un comment
+
+dir --> list all files in pwd
+
+python --version --> to check version python.
+
+git --version --> to check version of git.
+
+Run prg:
+========
+python file_name.py
+
+
+# -->single line comment
+""" / ''' --> doc string (multi line comment).
+
+shift + enter --> to run cell in colob or jupyter notebook
+
+data types:
+===========
+what kind of data we can store in python
+* Number - int, float
+* string - '',""
+* boolean - true/false
+* list - []
+* set - {}
+* dict - {key:value} 
+
+variables:
+==========
+* it is a named memory location in computer.
+var_name = value;
+
+conditional statements:
+=======================
+if, elif , if else
+
+syntax:
+=======
+* when condition will become true
+if(cond):
+	//code
+
+* true / false
+if(cond):
+	//code
+else:
+	//code
+
+* to check multiple condition
+if(cond):
+	//code
+elif (cond):
+	//code
+elif (cond):
+	//code
+else:
+	//code
+	
+Looping statement:
+==================
+1. for -  when we know the no of iteration
+2. while - when we don;t know the no of iteration
+
+print 5 * 1 = 5 -->  5 * 10 = 50 --> forloop
+
+print n o from 1 to user entered value --> while
+
+List , Tuple, Set, Dict:
+========================
+List - ordered, duplicate, store multiple data types and values.

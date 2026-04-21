@@ -1,0 +1,47 @@
+I am a beginner Python student learning Flask and SQLAlchemy.
+
+Act as a Python teacher and help me build a simple CRUD web application using Flask with SQLAlchemy ORM and SQLite as the database.
+
+Requirements:
+- Use Flask for the backend
+- Use Flask-SQLAlchemy for database operations (ORM)
+- Use SQLite as the database (file-based, no separate server needed)
+- Use HTML, CSS, and Bootstrap for the frontend
+- Keep everything beginner-friendly and well explained
+
+Features to include:
+1. User CRUD operations (using SQLAlchemy models):
+   - Create user (Add form)
+   - Read users (Display list in table)
+   - Update user (Edit form)
+   - Delete user (Delete button)
+
+2. Database:
+   - Define a User model with fields: id (primary key), name, email
+   - Use SQLite database file (e.g., users.db)
+   - Database should be created automatically when the app runs
+
+3. UI Requirements:
+   - Use Bootstrap for styling
+   - Clean and modern UI (table, buttons, spacing)
+   - Navigation (Add User button, Back button)
+   - Proper form design with validation (required fields)
+
+4. Code Structure:
+   - app.py (Flask backend with SQLAlchemy setup and routes)
+   - templates/ folder (index.html, add.html, edit.html)
+
+5. Functionality:
+   - All CRUD operations must work properly with the database
+   - Redirect after add/edit/delete
+   - Use simple, easy-to-understand logic
+
+6. Explanation:
+   - Explain each part in simple terms
+   - Add comments in the code explaining what each section does
+   - Explain the basics of SQLAlchemy (Model, db.session, query, commit)
+
+Goal:
+I want to clearly understand how CRUD operations work in Flask with SQLAlchemy and SQLite, and see a simple, good-looking UI.
+
+Please provide the complete code for all files and a clear explanation of how everything fits together.
